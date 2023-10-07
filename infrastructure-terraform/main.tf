@@ -8,14 +8,14 @@ terraform {
   }
   
 }
-terraform {
-   required_providers {
-    aws = {
-      source = "hashicorp/aws"
-      version = "3.74.3"
-    }
-}
-}
+# terraform {
+#    required_providers {
+#     aws = {
+#       source = "hashicorp/aws"
+#       version = "3.74.3"
+#     }
+# }
+# }
 provider "aws" {
   #profile = "default"
   region = var.region
