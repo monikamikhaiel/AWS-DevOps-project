@@ -1,2 +1,2 @@
 infrastructure-terraform/*exe
-infrastructure-terraform/*tfvars
+#infrastructure-terraform/*tfvars
