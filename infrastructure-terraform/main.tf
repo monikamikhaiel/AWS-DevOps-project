@@ -65,7 +65,7 @@ module "eks" {
   #vpc_id                   = "vpc-0720947bcddf307d7"
   #subnet_ids               = ["subnet-00e6e0acaa2ba9ace","subnet-0011157e597cf4403","subnet-00c8010565a822ad2"]
   vpc_id                   = module.vpc.default_vpc_id
-  subnet_ids               = module.vpc.database_subnets
+  subnet_ids               = [module.vpc.database_subnets]
   # Self Managed Node Group(s)
   self_managed_node_group_defaults = {
     instance_type                          = var.eks_instance_type
