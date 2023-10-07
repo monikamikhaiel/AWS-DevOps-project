@@ -90,7 +90,7 @@ module "eks" {
 module "ecr" {
   source = "terraform-aws-modules/ecr/aws"
 
-  repository_name = "ECR-Repo-AWS-devops_project"
+  repository_name = "ecr-repo-aws-devops_project"
   repository_type = "public"
   tags = {
     Terraform   = var.Terraform
