@@ -41,52 +41,52 @@ module "vpc" {
     Environment = var.Environment
   }
 }
-#create EKS
-module "eks" {
-  source  = "terraform-aws-modules/eks/aws"
-  version = "~> 19.0"
+# #create EKS
+# module "eks" {
+#   source  = "terraform-aws-modules/eks/aws"
+#   version = "~> 19.0"
 
-  cluster_name    = "eks-aws-devops-cluster"
-  cluster_version = "1.27"
+#   cluster_name    = "eks-aws-devops-cluster"
+#   cluster_version = "1.27"
 
-  cluster_endpoint_public_access  = true
-  cluster_addons = {
-    coredns = {
-      most_recent = true
-    }
-    kube-proxy = {
-      most_recent = true
-    }
-    vpc-cni = {
-      most_recent = true
-    }
-  }
+#   cluster_endpoint_public_access  = true
+#   cluster_addons = {
+#     coredns = {
+#       most_recent = true
+#     }
+#     kube-proxy = {
+#       most_recent = true
+#     }
+#     vpc-cni = {
+#       most_recent = true
+#     }
+#   }
 
-  #vpc_id                   = "vpc-0720947bcddf307d7"
-  #subnet_ids               = ["subnet-00e6e0acaa2ba9ace","subnet-0011157e597cf4403","subnet-00c8010565a822ad2"]
-  vpc_id                   = module.vpc.default_vpc_id
-  subnet_ids               = [module.vpc.database_subnets]
-  # Self Managed Node Group(s)
-  self_managed_node_group_defaults = {
-    instance_type                          = var.eks_instance_type
-  }
+#   #vpc_id                   = "vpc-0720947bcddf307d7"
+#   #subnet_ids               = ["subnet-00e6e0acaa2ba9ace","subnet-0011157e597cf4403","subnet-00c8010565a822ad2"]
+#   vpc_id                   = module.vpc.default_vpc_id
+#   subnet_ids               = [module.vpc.database_subnets]
+#   # Self Managed Node Group(s)
+#   self_managed_node_group_defaults = {
+#     instance_type                          = var.eks_instance_type
+#   }
 
-  self_managed_node_groups = {
-    one = {
-      name         = "node_pool_gp"
-      max_size     = 3
-      desired_size = 2     
-      }
-    }
+#   self_managed_node_groups = {
+#     one = {
+#       name         = "node_pool_gp"
+#       max_size     = 3
+#       desired_size = 2     
+#       }
+#     }
 
-  # aws-auth configmap
-  manage_aws_auth_configmap = true
+#   # aws-auth configmap
+#   manage_aws_auth_configmap = true
 
-  tags = {
-    Environment = var.Environment
-    Terraform   = var.Terraform
-  }
-}
+#   tags = {
+#     Environment = var.Environment
+#     Terraform   = var.Terraform
+#   }
+# }
 #create ECR 
 provider "aws" {
   alias  = "us-east-1"

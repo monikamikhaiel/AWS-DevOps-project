@@ -7,3 +7,6 @@ output "eks_arn" {
 output "ecr_repository_url" {
    value=module.ecr.repository_url
 }
+output "all_vpc_module"{
+   value=module.vpc
+}
