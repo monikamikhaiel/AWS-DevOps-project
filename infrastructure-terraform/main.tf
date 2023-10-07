@@ -87,7 +87,14 @@ module "eks" {
   }
 }
 #create ECR 
+provider "aws" {
+  alias  = "us-east-1"
+  region = "us-east-1"
+}
 module "ecr" {
+  providers = {
+    aws = aws.us-east-1
+  }
   source = "terraform-aws-modules/ecr/aws"
 
   repository_name = "ecr-repo-aws-devops_project"
